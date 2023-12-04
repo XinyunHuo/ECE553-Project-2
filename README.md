@@ -7,12 +7,12 @@
   GamerEngine.cpp and header\
   Rabbit.cpp and header\
   Veggie.cpp and header\
-  Main.cpp\
+  Main.cpp
   
   
 ### 2.Input Data files:
   VeggieFile1.csv\
-  VeggieFile2.csv\
+  VeggieFile2.csv
   
   
 ### 3.Bonus:
