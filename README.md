@@ -1,6 +1,6 @@
-# ECE553-Project-2
+# EE-553 Project 2: Captain Veggie
 ### This project will contain following objects
-### 1.Functions (Inheritance and Polumorphism):
+### 1. Functions (Inheritance and Polumorphism):
   Captain.cpp and header\
   Creature.cpp and header\
   FieldInhabitant.cpp and header\
@@ -10,13 +10,12 @@
   Main.cpp
   
   
-### 2.Input Data files:
+### 2. Input Data files:
   VeggieFile1.csv\
   VeggieFile2.csv
   
   
-### 3.Bonus:
+### 3. Bonus:
   Snake.cpp and header (optional extra credit)
 
-
-# Details of each class and header (fill in or delete)...
+# Descrptions
