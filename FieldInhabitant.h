@@ -8,8 +8,8 @@ o Appropriate header guards
 */
 
 #pragma once
-#ifndef FIELDINHABITANT.H
-#define FIELDINHABITANT.H
+#ifndef FIELDINHABITANT_H
+#define FIELDINHABITANT_H
 #include <string>
 
 using namespace std;

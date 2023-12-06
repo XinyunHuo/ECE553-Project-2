@@ -146,7 +146,7 @@ void GameEngine::printField()
             }
             else
             {
-                cout << field[j][i];
+                cout << field[j][i]->getSymbol();
             }
         }
         cout << "#" << endl;

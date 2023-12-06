@@ -4,6 +4,7 @@
 #include "FieldInhabitant.h"
 #include "Captain.h"
 #include "Rabbit.h"
+#include <iostream>
 
 class GameEngine
 {
