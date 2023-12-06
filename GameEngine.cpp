@@ -39,11 +39,11 @@ void GameEngine::initVeggies()
     fieldHeight = stoi(dataLine.substr(0,dataLine.find(","))); //get field height from file
     fieldWidth = stoi(dataLine.substr(dataLine.find(",")+1)); //get field width from file
 
-    field = new FieldInhabitant**[fieldHeight];
-    for (int i = 0; i < fieldHeight; i++)
+    field = new FieldInhabitant**[fieldWidth];
+    for (int i = 0; i < fieldWidth; i++)
     {
-        field[i] = new FieldInhabitant*[fieldWidth];
-        for (int j = 0; j < fieldWidth; j++)
+        field[i] = new FieldInhabitant*[fieldHeight];
+        for (int j = 0; j < fieldHeight; j++)
         {
             field[i][j] = nullptr; //set field as empty
         }
@@ -65,6 +65,7 @@ void GameEngine::initVeggies()
 
         Veggie* veggie = new Veggie(name, symbol, points); //add vegetable to the class
         veggies.push_back(veggie);
+
     }
 
     //generate 30 vegetables in the feild
@@ -72,6 +73,8 @@ void GameEngine::initVeggies()
     {
         int x;
         int y;
+
+        cout << "1" << endl;
         
         srand(time(0)); //seed random number
 
