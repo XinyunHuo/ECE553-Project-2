@@ -1,8 +1,8 @@
 /*
 o Define the constructor so it stores the parameter values in the appropriate member variables
-	~ The superclass¡¯s constructor should be called and the x and y coordinates as well as the
-		string ¡°V¡± should be passed to it
-o Define addVeggie() so that it adds the Veggie pointer to the captain¡¯s vector
+	~ The superclassï¿½ï¿½s constructor should be called and the x and y coordinates as well as the
+		string ï¿½ï¿½Vï¿½ï¿½ should be passed to it
+o Define addVeggie() so that it adds the Veggie pointer to the captainï¿½ï¿½s vector
 o Define the getter/setter functions
 */
 

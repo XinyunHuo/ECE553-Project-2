@@ -15,7 +15,7 @@ int main()
 
     while (remainVeggie > 0)
     {
-        cout << remainVeggie << " veggies remaining. Current score: " << game.getScore();
+        cout << remainVeggie << " veggies remaining. Current score: " << game.getScore() << endl;
 
         game.printField();
 
@@ -29,4 +29,6 @@ int main()
     game.gameOver();
 
     cout << endl;
+
+    return 0;
 }

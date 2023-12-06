@@ -16,7 +16,7 @@ void GameEngine::initializeGame()
 void GameEngine::initVeggies()
 {
     string fileName;
-    cout << "Please enter the name of the vegetable point fiel: ";
+    cout << "Please enter the name of the vegetable point file: ";
     cin >> fileName;
 
     ifstream veggieFile(fileName);
@@ -28,7 +28,15 @@ void GameEngine::initVeggies()
         veggieFile.open(fileName);
     }
 
-    //get height width
+    string line;
+    getline(veggieFile, line);
+    string dataLine;
+    dataLine = line.substr(line.find(",")+1);
+
+    fieldHeight = stoi(dataLine.substr(0,dataLine.find(",")));
+    fieldWidth = stoi(dataLine.substr(dataLine.find(",")+1));
+
+    cout << fieldHeight << "  " << fieldWidth << endl;
 
     field = new FieldInhabitant**[fieldHeight];
     for (int i = 0; i < fieldHeight; i++)
@@ -40,13 +48,22 @@ void GameEngine::initVeggies()
         }
     }
 
-    while (!veggieFile.eof())
+    while (getline(veggieFile, line))
     {
         string name;
         string symbol;
         int points;
+
+        name = line.substr(0, line.find(","));
+
+        dataLine = line.substr(line.find(",")+1);
+
+        symbol = dataLine.substr(0, dataLine.find(","));
+        points = stoi(dataLine.substr(dataLine.find(",")+1));
         
         //get name symbol points
+
+        cout << name << "  " << symbol << "  " << points << endl;
 
         Veggie* veggie = new Veggie(name, symbol, points);
         veggies.push_back(veggie);
@@ -130,7 +147,7 @@ void GameEngine::intro()
 
 void GameEngine::printField()
 {
-    for (int i = 0; i < fieldWidth + 2; i++)
+    for (int i = 0; i < fieldWidth*3 + 2; i++)
     {
         cout << "#";
     }
@@ -142,16 +159,16 @@ void GameEngine::printField()
         {
             if (field[j][i] == nullptr)
             {
-                cout << " ";
+                cout << "   ";
             }
             else
             {
-                cout << field[j][i]->getSymbol();
+                cout << " " << field[j][i]->getSymbol() << " ";
             }
         }
         cout << "#" << endl;
     }
-    for (int i = 0; i < fieldWidth + 2; i++)
+    for (int i = 0; i < fieldWidth*3 + 2; i++)
     {
         cout << "#";
     }
@@ -258,7 +275,7 @@ void GameEngine::moveCptVertical(int movement)
     x = captain->getXCoordinate();
     y = captain->getYCoordinate();
 
-    y = y + movement;
+    y += movement;
 
     if (y >= 0 && y < fieldHeight)
     {
@@ -275,6 +292,7 @@ void GameEngine::moveCptVertical(int movement)
             Veggie* veggie = dynamic_cast<Veggie*>(field[x][y]);
 
             field[x][y] = captain;
+            field[captain->getXCoordinate()][captain->getYCoordinate()] = nullptr;
 
             captain->setXCoordinate(x);
             captain->setYCoordinate(y);
@@ -286,8 +304,6 @@ void GameEngine::moveCptVertical(int movement)
         {
             cout << "Don't step on the bunnies!" << endl;
         }
-
-        field[captain->getXCoordinate()][captain->getYCoordinate()] = nullptr;
         
     }
     else
@@ -304,7 +320,7 @@ void GameEngine::moveCptHorizontal(int movement)
     x = captain->getXCoordinate();
     y = captain->getYCoordinate();
 
-    x = x + movement;
+    x += movement;
 
     if (x >= 0 && x < fieldWidth)
     {
@@ -321,6 +337,7 @@ void GameEngine::moveCptHorizontal(int movement)
             Veggie* veggie = dynamic_cast<Veggie*>(field[x][y]);
 
             field[x][y] = captain;
+            field[captain->getXCoordinate()][captain->getYCoordinate()] = nullptr;
 
             captain->setXCoordinate(x);
             captain->setYCoordinate(y);
@@ -332,8 +349,6 @@ void GameEngine::moveCptHorizontal(int movement)
         {
             cout << "Don't step on the bunnies!" << endl;
         }
-        
-        field[captain->getXCoordinate()][captain->getYCoordinate()] = nullptr;
         
     }
     else
@@ -365,7 +380,7 @@ void GameEngine::moveCaptain()
             moveCptHorizontal(1);
             break;
         default:
-            cout << direction << "is not a valid option" << endl;
+            cout << direction << " is not a valid option" << endl;
     }
 }
 
@@ -380,5 +395,3 @@ void GameEngine::gameOver()
     }
     cout << "Your score was: " << score << endl;
 }
-
-
