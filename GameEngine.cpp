@@ -160,7 +160,6 @@ void GameEngine::printField()
 
 int GameEngine::getScore() const
 {
-    int score;
     return score;
 }
 
@@ -251,5 +250,135 @@ void GameEngine::moveRabbits()
     }
 }
 
+void GameEngine::moveCptVertical(int movement)
+{
+    int x;
+    int y;
+
+    x = captain->getXCoordinate();
+    y = captain->getYCoordinate();
+
+    y = y + movement;
+
+    if (y >= 0 && y < fieldHeight)
+    {
+        if (field[x][y] == nullptr)
+        {
+            field[x][y] = captain;
+            field[captain->getXCoordinate()][captain->getYCoordinate()] = nullptr;
+
+            captain->setXCoordinate(x);
+            captain->setYCoordinate(y);
+        }
+        else if (dynamic_cast<Veggie*>(field[x][y]))
+        {
+            Veggie* veggie = dynamic_cast<Veggie*>(field[x][y]);
+
+            field[x][y] = captain;
+
+            captain->setXCoordinate(x);
+            captain->setYCoordinate(y);
+
+            captain->addVeggie(veggie);
+            score += veggie->getPointValue();
+        }
+        else if (dynamic_cast<Rabbit*>(field[x][y]))
+        {
+            cout << "Don't step on the bunnies!" << endl;
+        }
+
+        field[captain->getXCoordinate()][captain->getYCoordinate()] = nullptr;
+        
+    }
+    else
+    {
+        cout << "You can't move that way!" << endl;
+    }
+}
+
+void GameEngine::moveCptHorizontal(int movement)
+{
+    int x;
+    int y;
+
+    x = captain->getXCoordinate();
+    y = captain->getYCoordinate();
+
+    x = x + movement;
+
+    if (x >= 0 && x < fieldWidth)
+    {
+        if (field[x][y] == nullptr)
+        {
+            field[x][y] = captain;
+            field[captain->getXCoordinate()][captain->getYCoordinate()] = nullptr;
+
+            captain->setXCoordinate(x);
+            captain->setYCoordinate(y);
+        }
+        else if (dynamic_cast<Veggie*>(field[x][y]))
+        {
+            Veggie* veggie = dynamic_cast<Veggie*>(field[x][y]);
+
+            field[x][y] = captain;
+
+            captain->setXCoordinate(x);
+            captain->setYCoordinate(y);
+
+            captain->addVeggie(veggie);
+            score += veggie->getPointValue();
+        }
+        else if (dynamic_cast<Rabbit*>(field[x][y]))
+        {
+            cout << "Don't step on the bunnies!" << endl;
+        }
+        
+        field[captain->getXCoordinate()][captain->getYCoordinate()] = nullptr;
+        
+    }
+    else
+    {
+        cout << "You can't move that way!" << endl;
+    }
+}
+
+void GameEngine::moveCaptain()
+{
+    char direction;
+    cout << "Would you like to move up(W), down(S), left(A), or right(D):";
+    cin >> direction;
+
+    direction = tolower(direction);
+
+    switch (direction)
+    {
+        case 'w':
+            moveCptVertical(-1);
+            break;
+        case 'a':
+            moveCptHorizontal(-1);
+            break;
+        case 's':
+            moveCptVertical(1);
+            break;
+        case 'd':
+            moveCptHorizontal(1);
+            break;
+        default:
+            cout << direction << "is not a valid option" << endl;
+    }
+}
+
+void GameEngine::gameOver()
+{
+    cout << "GAME OVER!" << endl;
+    cout << "You managed to harvest the followingg vegetables:" << endl;
+    const vector<Veggie*>& collectedVeggie = captain->getCollectedVeggies();
+    for (const auto& veggie : collectedVeggie)
+    {
+        cout << veggie->getVegetableName() << endl;
+    }
+    cout << "Your score was: " << score << endl;
+}
 
 
