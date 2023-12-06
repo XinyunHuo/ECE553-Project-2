@@ -6,14 +6,14 @@ int main()
 {
     GameEngine game;
 
-    game.initializeGame();
+    game.initializeGame(); // initialize game
 
-    game.intro();
+    game.intro(); //print game intro
 
     int remainVeggie;
-    remainVeggie = game.remainingVeggies();
+    remainVeggie = game.remainingVeggies(); //get remain vegetable number
 
-    while (remainVeggie > 0)
+    while (remainVeggie > 0) //update game
     {
         cout << remainVeggie << " veggies remaining. Current score: " << game.getScore() << endl;
 
@@ -23,10 +23,12 @@ int main()
 
         game.moveCaptain();
 
+        cout << endl;
+
         remainVeggie = game.remainingVeggies();
     }
 
-    game.gameOver();
+    game.gameOver(); //game over
 
     cout << endl;
 
