@@ -1,13 +1,3 @@
-/*
-o A vector of Veggie pointers storing all of the Veggie objects the captain has collected
-o A declaration for public constructor that takes in two integer parameters representing the x
-	and y coordinates of the captain
-o A declaration for a public function named addVeggie() that takes in pointer to a Veggie
-object as a parameter, returns nothing, and adds the object to the vector of Veggie objects
-o Declarations for appropriate getter/setter functions
-o Appropriate header guards
-*/
-
 #pragma once
 #ifndef CAPTAIN_H
 #define CAPTAIN_H
