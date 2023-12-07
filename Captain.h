@@ -7,10 +7,9 @@
 #include <vector>
 
 class Captain : public Creature {
-private:
+public:
     vector<Veggie*> collectedVeggies;
 
-public:
     // Constructor
     Captain(int xCoord, int yCoord);
 

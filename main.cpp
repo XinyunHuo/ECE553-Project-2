@@ -21,6 +21,10 @@ int main()
 
         game.moveRabbits();
 
+        //bonus part
+        game.moveSnake();
+        //bonus part end
+
         game.moveCaptain();
 
         cout << endl;

@@ -4,6 +4,7 @@
 #include "FieldInhabitant.h"
 #include "Captain.h"
 #include "Rabbit.h"
+#include "Snake.h"
 #include <iostream>
 
 class GameEngine
@@ -27,6 +28,9 @@ class GameEngine
         // @brief this function is to move captain base on user input
         void moveCaptain();
 
+        // @brief this function is to move snake base on user input
+        void moveSnake();
+
         // @brief this function indicate the end of game
         void gameOver();
 
@@ -46,6 +50,7 @@ class GameEngine
         const int NUMBEROFRABBITS;
 
         Captain* captain;
+        Snake* snake;
 
         vector<Rabbit*> rabbits;
         vector<Veggie*> veggies;
@@ -58,6 +63,9 @@ class GameEngine
 
         // @brief Thsi function is to initialize rabbit position
         void initRabbits();
+
+        // @brief Thsi function is to initialize snake position
+        void initSnake();
 
         // @brief Thsi function is to move captain position vertical
         // @param movement indicate the direction and length of movement

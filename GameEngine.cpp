@@ -13,6 +13,9 @@ void GameEngine::initializeGame()
     initCaptain();
     initRabbits();
     score = 0;
+
+    // bonus part
+    initSnake();
 }
 
 // @brief This function is to initialize vegetable in the game
@@ -445,4 +448,176 @@ void GameEngine::gameOver()
         cout << veggie->getVegetableName() << endl;
     }
     cout << "Your score was: " << score << endl; //output user score
+}
+
+
+//----------------------------------// 
+//Bonus Part
+
+// @brief Thsi function is to initialize snake position
+void GameEngine::initSnake()
+{
+    int x;
+    int y;
+
+    do
+    {
+        x = rand() % fieldWidth;
+        y = rand() % fieldHeight;
+    } while (field[x][y] != nullptr);
+
+    snake = new Snake(x, y);
+    field[x][y] = snake; //log snake in field
+}
+
+// @brief this function is to move snake
+void GameEngine::moveSnake()
+{
+    int x;
+    int y;
+    int captainX;
+    int captainY;
+
+    captainX = captain->getXCoordinate();
+    captainY = captain->getYCoordinate();
+
+    x = snake->getXCoordinate();
+    y = snake->getYCoordinate();
+
+    int direction;
+
+    if(captainX > x && captainY > y)
+    {
+        direction = 0; //up right
+    }
+    else if (captainX > x && captainY == y)
+    {
+        direction = 1; //right
+    }
+    else if (captainX > x && captainY < y)
+    {
+        direction = 2; //down right
+    }
+    else if (captainX == x && captainY > y)
+    {
+        direction = 3; //up
+    }
+    else if (captainX == x && captainY < y)
+    {
+        direction = 4; //down
+    }
+    else if (captainX < x && captainY > y)
+    {
+        direction = 5; //up left
+    }
+    else if (captainX < x && captainY == y)
+    {
+        direction = 6; //left
+    }
+    else
+    {
+        direction = 7; //down left
+    }
+
+    srand(time(0));
+    int randomNum = rand() % 2;
+
+    switch(direction)
+    {
+        case 0:
+            if(randomNum == 0)
+            {
+                y = y + 1;
+            }
+            else
+            {
+                x = x + 1;
+            }
+            break;
+
+        case 2:
+            if(randomNum == 0)
+            {
+                y = y - 1;
+            }
+            else
+            {
+                x = x + 1;
+            }
+            break;
+
+        case 5:
+            if(randomNum == 0)
+            {
+                y = y + 1;
+            }
+            else
+            {
+                x = x - 1;
+            }
+            break;
+            
+        case 7:
+            if(randomNum == 0)
+            {
+                y = y - 1;
+            }
+            else
+            {
+                x = x - 1;
+            }
+            break;
+
+        case 3:
+            y = y + 1;
+            break;
+        
+        case 4:
+            y = y - 1;
+            break;
+        
+        case 6:
+            x = x - 1;
+            break;
+
+        case 1:
+            x = x + 1;
+            break;
+    }
+
+    if (x < 0 || y < 0 || x >= fieldWidth || y >= fieldHeight) //check if out of bound
+    {
+        exit;
+    }
+    else if (dynamic_cast<Veggie*>(field[x][y]) || dynamic_cast<Rabbit*>(field[x][y])) //check if the position taken by captain
+    {
+        exit;
+    }
+    else if (field[x][y] == nullptr) //check empty
+    {
+        field[x][y] = snake;
+        field[snake->getXCoordinate()][snake->getYCoordinate()] = nullptr;
+
+        snake->setXCoordinate(x);
+        snake->setYCoordinate(y);
+    }
+    else if (field[x][y] == captain)
+    {
+        int deleteSize;
+        deleteSize = captain->collectedVeggies.size();
+        if (deleteSize >=5)
+        {
+            deleteSize = 5;
+        }
+
+        for(int i = 0; i < deleteSize; i++)
+        {
+            Veggie* veggie = captain->collectedVeggies.back();
+            score -= veggie->getPointValue();
+            captain->collectedVeggies.pop_back();
+        }
+        
+        field[snake->getXCoordinate()][snake->getYCoordinate()] = nullptr;
+        initSnake();
+    }
 }
