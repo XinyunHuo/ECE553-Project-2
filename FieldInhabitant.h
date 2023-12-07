@@ -1,12 +1,3 @@
-/*
-o A string member variable to store a symbol
-o A declaration for a public constructor that takes in a parameter representing a string symbol for
-	the field inhabitant (vegetable, rabbit, captain, etc)
-o Declarations for appropriate getter/setter functions
-o A declaration for a virtual deconstructor
-o Appropriate header guards
-*/
-
 #pragma once
 #ifndef FIELDINHABITANT_H
 #define FIELDINHABITANT_H
