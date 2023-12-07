@@ -1,10 +1,3 @@
-/*
-o Define the constructor so it stores the parameter values in the appropriate member variables
-    ~ The superclass¡¯s constructor should be called and the symbol should be passed to it
-o Define the getter/setter functions
-
-*/
-
 #pragma once
 #ifndef CREATURE_H
 #define CREATURE_H
