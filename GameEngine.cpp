@@ -402,14 +402,20 @@ void GameEngine::moveCptHorizontal(int movement)
 // @brief this function is to move captain base on user input
 void GameEngine::moveCaptain()
 {
+    string direction_check; // this is for checking the input length is one, or re-enter
     char direction;
     cout << "Would you like to move up(W), down(S), left(A), or right(D):";
-    cin >> direction;
+    cin >> direction_check;
+    
+    if (direction_check.length() != 1) {
+        cout << direction_check << " is not a valid option" << endl;
+    }
+    else {
+        direction = direction_check.at(0);
+        direction = tolower(direction);
 
-    direction = tolower(direction);
-
-    switch (direction)
-    {
+        switch (direction)
+        {
         case 'w': //up
             moveCptVertical(-1);
             break;
@@ -424,6 +430,7 @@ void GameEngine::moveCaptain()
             break;
         default: //invalid input
             cout << direction << " is not a valid option" << endl;
+        }
     }
 }
 
