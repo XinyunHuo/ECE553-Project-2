@@ -1,11 +1,3 @@
-/*
-o Two integer member variables to store the x and y coordinates of the creature
-o A declaration for public constructor that takes in two integer parameters representing the x
-    and y coordinates of the creature and a string representing the symbol of the creature
-o Declarations for appropriate getter/setter functions
-o Appropriate header guards
-*/
-
 #include "Creature.h"
 
 // Constructor implementation
