@@ -1,12 +1,3 @@
-/*
-o A string member variable to store the name of the vegetable
-o An integer member variable to store the point value of the vegetable
-o A declaration for public constructor that takes in two string parameters representing the name
-    and symbol of the vegetable and an integer representing the number of points the vegetable is
-    worth
-o Declarations for appropriate getter/setter functions
-o Appropriate header guards
-*/
 #pragma once
 #ifndef VEGGIE_H
 #define VEGGIE_H
