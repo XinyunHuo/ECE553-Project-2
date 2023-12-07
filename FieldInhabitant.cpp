@@ -1,9 +1,3 @@
-/*
-o Define the constructor so it stores the parameter value in the appropriate member variable
-o Define the getter/setter functions
-o Define the deconstructor so that is does nothing
-*/
-
 #include "FieldInhabitant.h"
 
 // Constructor implementation
